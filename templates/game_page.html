@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TIC TAC TOE game page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='game_style.css') }}">
+</head>
+<body style="background-color: powderblue; text-align:center;">
+<div class="game_page">
+    <h4>{{player1.name }}: has {{player1.victories}} victories</h4>
+    <h4>{{player2.name }}: has {{player2.victories}} victories</h4>
+    <h4>{{active_player.name }} make turn now, his symbol is {{active_player.symbol }}</h4>
+    {% if renew %}
+        <h1 class="alarm">The game was renewed</h1>
+    {% else %}
+    {% endif %}
+    {% if error %}
+        <h4> {{error}}</h4>
+    {% endif %}
+    {% if win_condition %}
+        <h1 class="alarm"> {{winner.name}} won the round!</h1>
+    {% endif %}
+    {% if draw %}
+        <h1 class="alarm"> This is draw </h1>
+    {% endif %}
+    <form method="post" style="background-color:darkslateblue; padding:50px;
+     width:400px; margin: 50px auto; border: 3px black solid; ">
+        {{ form.hidden_tag() }}
+        {{form.choice.label}}  {{form.choice}} <br> <br>
+        {{form.renew.label}}  {{form.renew}} <br> <br>
+        {{form.button}} <br> <br>
+    </form>
+    <table style="border: 1px darkslateblue solid; margin:10px auto; width:100px;height:100px;">
+            <tr>
+                <td> {{positions[6]}} </td>
+                <td> {{positions[7]}} </td>
+                <td> {{positions[8]}} </td>
+            </tr>
+            <tr>
+                <td> {{positions[3]}} </td>
+                <td> {{positions[4]}} </td>
+                <td> {{positions[5]}} </td>
+            </tr>
+            <tr>
+                <td> {{positions[0]}} </td>
+                <td> {{positions[1]}} </td>
+                <td> {{positions[2]}} </td>
+            </tr>
+    </table>
+</div>
+</body>
+</html>
